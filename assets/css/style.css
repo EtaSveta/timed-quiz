@@ -21,18 +21,14 @@ body {
     position: absolute;
     top: 200px;
     left: 200px;
+    background: white;
+    width: 600px;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .start-btn button {
     font-size: larger;
     padding: 20px 20px;
-
-}
-
-.quiz-page {
-    background: white;
-    width: 600px;
-    border-radius: 10px 10px 10px 10px;
 
 }
 
@@ -85,4 +81,53 @@ body {
 
 .quiz-page section .options:hover {
     background-color: rgb(219, 233, 188);
+}
+
+.results {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    top: 40%;
+    left: 35%;
+    background: white;
+    width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.results .ended-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.final-score {
+    align-items: center;
+}
+
+.results .final-score span {
+    display: flex;
+    margin: 10px 0;
+    font-size: 20px;
+
+}
+
+.results .final-score p {
+    font-size: 20px;
+    padding: 0 10px;    
+}
+
+.results button {
+    border-radius: 5px;
+    padding: 2px 5px;
+    border: 1px solid black;
+    font-size: 15px;
+    background-color:rgb(219, 222, 209) ;
+    cursor: pointer;
+}
+
+.results button:hover {
+    background-color: rgb(215, 229, 178);
 }
