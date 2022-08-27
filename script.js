@@ -136,6 +136,7 @@ showQstn(0);
 
 
 var questionCount = 0;
+console.log(questionCount);
 
 // function showing questions 
 function showQstn(index) {
@@ -144,22 +145,43 @@ function showQstn(index) {
     question.innerHTML = questionTag;
         
     var ansList = document.querySelector(".answers");
-    var ansListTag = '<div class="options">' + questions[index].answers[0] + '<span></span></div>'
-                    + '<div class="options">'+ questions[index].answers[1] + '<span></span></div>'
-                    + '<div class="options">'+ questions[index].answers[2] + '<span></span></div>'
-                    + '<div class="options">'+ questions[index].answers[3] + '<span></span></div>';
+    var ansListTag =  '<div class="options">' + questions[index].answers[0] + '<span></span></div>'
+                    + '<div class="options">' + questions[index].answers[1] + '<span></span></div>'
+                    + '<div class="options">' + questions[index].answers[2] + '<span></span></div>'
+                    + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
     ansList.innerHTML = ansListTag;  
 }
 
 
-    var optns = document.querySelector(".options");
-    optns.addEventListener('click', (event) => {
-        console.log("hi");
-    questionCount++;
-    showQstn(questionCount);
-    console.log(questionCount);
+    var optns = document.querySelectorAll(".options");
+    optns.forEach(options => {
+        options.addEventListener('click', function handleClick(event) {
+            console.log("hi");
+            questionCount++;
+            showQstn(questionCount);
+            console.log(questionCount);
+        });    
 
     });
+    // optns.addEventListener('click', (event) => {
+    //     console.log("hi");
+    // questionCount++;
+    // showQstn(questionCount);
+    // console.log(questionCount);
+
+    // });
+
+    // var optns = document.querySelector(".options");
+    // optns.onclick = () => {
+    //     console.log("hi");
+    // questionCount++;
+    // showQstn(questionCount);
+    // console.log(questionCount);
+
+    // };
+
+
+    
 
 
     
