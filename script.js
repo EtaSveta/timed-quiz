@@ -1,9 +1,9 @@
 var startBtn = document.querySelector(".start-btn button");
 var quizPage = document.querySelector(".quiz-page");
+var secondsCount = document.querySelector(".time-sec");
+
 
 // creating a list of questions as an array
-
-
 var questions = [
     {
         num: 1,
@@ -133,10 +133,13 @@ var StartQuiz = function (event) {
 
 startBtn.addEventListener("click", StartQuiz); 
 showQstn(0);
+startTime(60);
 
 
 var questionCount = 0;
 console.log(questionCount);
+
+var counter;
 
 // function showing questions 
 function showQstn(index) {
@@ -151,10 +154,10 @@ function showQstn(index) {
                     + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
     ansList.innerHTML = ansListTag;  
 
-
-
+    
 
     addListeners();
+    
 }
 
 
@@ -164,14 +167,17 @@ function addListeners() {
         optns[i].setAttribute("onclick", "optionSelected(this)")};
     optns.forEach(options => {
         options.addEventListener('click', function handleClick(event) {
+            if (questionCount > 8) {
+                console.log("No more qs")
+            }
             
+            else {
             questionCount++;
             showQstn(questionCount);
             console.log(questionCount);
+            }    
         });  
     });
-
-    
 };
 
 
@@ -181,26 +187,23 @@ function optionSelected(answr){
     var correctAnswr = questions[questionCount].correct;
        
     if (userAnswr == correctAnswr) {
-        
-    console.log("answer is correct");
+        console.log("answer is correct");
     }
     else {
         console.log("answer is wrong");
+        
     }
 
 
 }
 
-// function completeQstns() {
-//     if (questionCount < questions.length -1) {
-//         showQstn(questionCount);
-//     }
-//     else {
-//         console.log("Questions completed")
-//     }
-// };    
-    
-// completeQstns();
+function startTime(seconds) {
+    counter = setInterval(timer, 1000);
+    function timer() {
+        secondsCount.textContent = seconds;
+        seconds--;
+    }
+}
     
     
 
