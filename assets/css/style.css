@@ -77,6 +77,7 @@ body {
 .quiz-page section .answers {
     display: block;
     padding: 20px;
+    
 }
 
 .quiz-page section .options {
@@ -87,6 +88,7 @@ body {
     border: 2px solid rgb(215, 229, 178);
     border-radius: 5px;
     background:rgb(238, 242, 229);
+    
 }
 
 .quiz-page section .options:hover {

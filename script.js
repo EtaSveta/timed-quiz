@@ -8,35 +8,35 @@ var questions = [
     {
         num: 1,
         questionText:"1. Inside which HTML element do we put the JavaScript?",
-        correct:"&lt;script&gt",
+        correct: "script" , 
         answers: [
-            "&lt;scripting&gt",
-            "&lt;script&gt",
-            "&lt;javascript&gt",
-            "&lt;js&gt"
+            "scripting",
+            "script" ,
+            "javascript",
+            "js"
         ]
     },
     {
         num: 2,
         questionText:"2. Where is the correct place to insert a JavaScript?",
-        correct:"Both the <body> section and the <head> section are correct ",
+        correct:"Both the <body> section and the <head> section are correct",
         answers: [
             "The &lt;body&gt section",
             "The &lt;header&gt section",
             "The &lt;head&gt section",
-            "Both the &lt;body&gt section and the <head> section are correct "
+            "Both the &lt;body&gt section and the &lt;head&gt section are correct"
         ]
     },
 
     {
         num: 3,
         questionText:"3. What is the correct syntax for referring to an external script called 'xxx.js'?",
-        correct:"<script scr = “xxx.js>",
+        correct:"<script scr = 'xxx.js'>",
         answers: [
-            "&lt;script name = “xxx.js>",
-            "&lt;script href = “xxx.js>",
-            "&lt;script scr = “xxx.js>",
-            "&lt;script img = “xxx.js>"
+            "&lt;script name = 'xxx.js'&gt",
+            "&lt;script href = 'xxx.js'&gt",
+            "&lt;script scr = 'xxx.js'&gt",
+            "&lt;script img = 'xxx.js'&gt"
         ]
     },
 
@@ -103,11 +103,11 @@ var questions = [
     {
         num: 9,
         questionText:"9. How does a FOR loop start?",
-        correct:"for (i <=5; i++)",
+        correct:"for (i = 0; i <= 5; i++)",
         answers: [
             "for i = 1 to 5",
             "for (i <=5; i++)",
-            "for (i <=5; i++)",
+            "for (i = 0; i <= 5; i++)",
             "for (i = 0; i <=5)"
         ]
     },
@@ -150,35 +150,60 @@ function showQstn(index) {
                     + '<div class="options">' + questions[index].answers[2] + '<span></span></div>'
                     + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
     ansList.innerHTML = ansListTag;  
+
+
+
+
+    addListeners();
 }
 
 
+function addListeners() {
     var optns = document.querySelectorAll(".options");
+    for (var i = 0; i < optns.length; i++ ){
+        optns[i].setAttribute("onclick", "optionSelected(this)")};
     optns.forEach(options => {
         options.addEventListener('click', function handleClick(event) {
-            console.log("hi");
+            
             questionCount++;
             showQstn(questionCount);
             console.log(questionCount);
-        });    
-
+        });  
     });
-    // optns.addEventListener('click', (event) => {
-    //     console.log("hi");
-    // questionCount++;
-    // showQstn(questionCount);
-    // console.log(questionCount);
 
-    // });
+    
+};
 
-    // var optns = document.querySelector(".options");
-    // optns.onclick = () => {
-    //     console.log("hi");
-    // questionCount++;
-    // showQstn(questionCount);
-    // console.log(questionCount);
 
-    // };
+
+function optionSelected(answr){
+    userAnswr = answr.textContent;
+    var correctAnswr = questions[questionCount].correct;
+       
+    if (userAnswr == correctAnswr) {
+        
+    console.log("answer is correct");
+    }
+    else {
+        console.log("answer is wrong");
+    }
+
+
+}
+
+// function completeQstns() {
+//     if (questionCount < questions.length -1) {
+//         showQstn(questionCount);
+//     }
+//     else {
+//         console.log("Questions completed")
+//     }
+// };    
+    
+// completeQstns();
+    
+    
+
 
 
     
