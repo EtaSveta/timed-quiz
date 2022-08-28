@@ -1,7 +1,7 @@
 var startBtn = document.querySelector(".start-btn button");
 var quizPage = document.querySelector(".quiz-page");
 var secondsCount = document.querySelector(".time-sec");
-
+var results = document.querySelector(".results")
 
 // creating a list of questions as an array
 var questions = [
@@ -126,6 +126,10 @@ var questions = [
 
 ]
 
+
+var seconds = 100;
+var userTime;
+
 // if Start Button clicked
 var StartQuiz = function (event) {
     quizPage.classList.add("clicked");
@@ -133,7 +137,7 @@ var StartQuiz = function (event) {
 
 startBtn.addEventListener("click", StartQuiz); 
 showQstn(0);
-startTime(60);
+startTime(seconds);
 
 
 var questionCount = 0;
@@ -157,7 +161,6 @@ function showQstn(index) {
     
 
     addListeners();
-    
 }
 
 
@@ -168,9 +171,11 @@ function addListeners() {
     optns.forEach(options => {
         options.addEventListener('click', function handleClick(event) {
             if (questionCount > 8) {
-                console.log("No more qs")
+                showResults();
+                userTime = seconds;
+                console.log(userTime);
+                
             }
-            
             else {
             questionCount++;
             showQstn(questionCount);
@@ -181,7 +186,7 @@ function addListeners() {
 };
 
 
-
+// if user selects correct or incorrect answer
 function optionSelected(answr){
     userAnswr = answr.textContent;
     var correctAnswr = questions[questionCount].correct;
@@ -190,25 +195,36 @@ function optionSelected(answr){
         console.log("answer is correct");
     }
     else {
+        secondsCount.textContent = seconds;
+        seconds = seconds-10;
         console.log("answer is wrong");
-        
     }
-
-
 }
 
-function startTime(seconds) {
+
+
+function startTime() {
     counter = setInterval(timer, 1000);
     function timer() {
+        if(seconds < 1){
+            showResults();
+        }
+        else {
         secondsCount.textContent = seconds;
         seconds--;
+        }
     }
-}
+};
     
     
 
-
-
+function showResults()  {
+    quizPage.style.display = "none";
+    results.classList.add("clicked");
+    var finalScore = results.querySelector(".final-score");
+    var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
+    finalScore.innerHTML = scoreTag;
+};
     
 
 
