@@ -179,7 +179,6 @@ function addListeners() {
             if (questionCount > 8) {
                 showResults();
                 userTime = seconds;
-                localStorage.setItem("userTime", JSON.stringify(userTime));
                 clearInterval(counter);
                 console.log(userTime);
                 
@@ -254,16 +253,34 @@ var submitResults = function(event) {
     
     var submitInitialsEl = document.createElement("li");
     submitInitialsEl.className = "saved-initials";
-    // submitInitialsEl.textContent = "User Initials to be";
-    submitInitialsEl.innerHTML = "<span>" + initialsInput + "</span>"
+    var initialsInput = document.querySelector("input[name='initials']").value;
+    var userScore = userTime;
+
+    // if (initialsInput === "") {
+    //     alert("Please fill out the form");
+    //     }
+    var savedObject = {
+        name: initialsInput,
+        type: userScore
+    }
+
+    submitInitialsEl.innerHTML = "<span>" + savedObject.name + "   " + savedObject.type +  "</span>";
     savedScores.appendChild(submitInitialsEl);
 
-    var initialsInput = document.querySelector("input[name='initials']").value;
+    localStorage.setItem("savedScores", JSON.stringify(savedObject));
+    loadScores();
     
+};
 
+var loadScores = function() {
     
-      
+        var displayScores = localStorage.getItem("savedScores");
+        if (!savedScores) {
+            return false;
+        }
+        console.log("saved tasks found");
     
+        displayScores = JSON.parse(displayScores);
 };
 
 
