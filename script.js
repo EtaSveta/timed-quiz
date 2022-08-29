@@ -2,6 +2,9 @@ var startBtn = document.querySelector(".start-btn button");
 var quizPage = document.querySelector(".quiz-page");
 var secondsCount = document.querySelector(".time-sec");
 var results = document.querySelector(".results")
+var submitBtn = document.querySelector("#submit");
+var highScores = document.querySelector(".high-scores");
+var savedScores = document.querySelector(".saved-scores");
 
 // creating a list of questions as an array
 var questions = [
@@ -133,11 +136,13 @@ var userTime;
 // if Start Button clicked
 var StartQuiz = function (event) {
     quizPage.classList.add("clicked");
+    showQstn(0);
+    startTime(seconds);
 }
 
 startBtn.addEventListener("click", StartQuiz); 
-showQstn(0);
-startTime(seconds);
+
+
 
 
 var questionCount = 0;
@@ -161,6 +166,7 @@ function showQstn(index) {
     
 
     addListeners();
+    
 }
 
 
@@ -173,6 +179,8 @@ function addListeners() {
             if (questionCount > 8) {
                 showResults();
                 userTime = seconds;
+                localStorage.setItem("userTime", JSON.stringify(userTime));
+                clearInterval(counter);
                 console.log(userTime);
                 
             }
@@ -208,6 +216,7 @@ function startTime() {
     function timer() {
         if(seconds < 1){
             showResults();
+            clearInterval(counter);
         }
         else {
         secondsCount.textContent = seconds;
@@ -222,13 +231,50 @@ function showResults()  {
     quizPage.style.display = "none";
     results.classList.add("clicked");
     var finalScore = results.querySelector(".final-score");
-    var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
-    finalScore.innerHTML = scoreTag;
+    
+    if (seconds < 0) {
+        var scoreTag = "<span>Your final score is <p>" + 0 + "</p></span>"; 
+        finalScore.innerHTML = scoreTag;
+    }
+    else {
+        var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
+        finalScore.innerHTML = scoreTag;
+
+    }
 };
+
+
+
+
+//once Sumbit Initials button clicked
+var submitResults = function(event) {
+    event.preventDefault();
+    results.classList.remove("clicked");
+    highScores.classList.add("clicked");
     
+};
 
+var initialsEl = document.querySelector(".saved-initials")
+initialsEl.innerHTML = "<span>Initials 1</span>";
+savedScores.appendChild(initialsEl);
 
+// var loadTasks = function () {
+//     var savedTasks = localStorage.getItem("tasks");
+//     if (!savedTasks) {
+//         return false;
+//     }
+//     console.log("saved tasks found");
+
+//     savedTasks = JSON.parse(savedTasks);
     
+//     // loop through savedTasks array
+//     for (var i = 0; i < savedTasks.length; i++) {
+//     // pass each task object into the `createTaskEl()` function
+//     createTaskEl(savedTasks[i]);
+//     console.log(savedTasks[i])
+//     }
 
+// };
 
+results.addEventListener("click", submitResults);
 

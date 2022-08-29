@@ -12,14 +12,12 @@
         <button>START</button>
     </div>
 
-    <div class="high-scores">View High Scores</div>
-    
     <!-- quiz page -->
     <div class="quiz-page">
         <header>
             <div class="timer">
                 <div class="time-left">Time Left:</div>
-                <div class="time-sec">60</div>
+                <div class="time-sec"></div>
             </div>
         </header>
 
@@ -53,11 +51,25 @@
         <form>
             <label for="name">Enter your initials:</label>
             <input type="text" placeholder="Your Initials" name="initials" id="initials" class="form-input" />
-            <button type="submit">Submit</button> 
+            <button type="submit" id="submit">Submit</button> 
         </form> 
     </div>    
                 
         
+    <div class="high-scores">
+        <div class="text">High Scores</div>
+        <ul class="saved-scores">
+            <li class="saved-initials">
+                <span>Initials 1</span>
+            </li>
+            <!-- <li class="saved-initials">
+                <span>Initials 2</span>
+            </li> -->
+        </ul>
+        <div class="highscore-buttons">
+            <button>Start Quiz</button>
+            <button>Clear Scores</button>
+        </div>
     
 
 
