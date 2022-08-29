@@ -252,29 +252,23 @@ var submitResults = function(event) {
     results.classList.remove("clicked");
     highScores.classList.add("clicked");
     
+    var submitInitialsEl = document.createElement("li");
+    submitInitialsEl.className = "saved-initials";
+    // submitInitialsEl.textContent = "User Initials to be";
+    submitInitialsEl.innerHTML = "<span>" + initialsInput + "</span>"
+    savedScores.appendChild(submitInitialsEl);
+
+    var initialsInput = document.querySelector("input[name='initials']").value;
+    
+
+    
+      
+    
 };
 
-var initialsEl = document.querySelector(".saved-initials")
-initialsEl.innerHTML = "<span>Initials 1</span>";
-savedScores.appendChild(initialsEl);
 
-// var loadTasks = function () {
-//     var savedTasks = localStorage.getItem("tasks");
-//     if (!savedTasks) {
-//         return false;
-//     }
-//     console.log("saved tasks found");
 
-//     savedTasks = JSON.parse(savedTasks);
-    
-//     // loop through savedTasks array
-//     for (var i = 0; i < savedTasks.length; i++) {
-//     // pass each task object into the `createTaskEl()` function
-//     createTaskEl(savedTasks[i]);
-//     console.log(savedTasks[i])
-//     }
 
-// };
 
-results.addEventListener("click", submitResults);
+submitBtn.addEventListener("click", submitResults);
 
