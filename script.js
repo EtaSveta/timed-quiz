@@ -5,24 +5,25 @@ var results = document.querySelector(".results")
 var submitBtn = document.querySelector("#submit");
 var highScores = document.querySelector(".high-scores");
 var savedScores = document.querySelector(".saved-scores");
+var resultsForm = document.querySelector("#results-form")
 
 // creating a list of questions as an array
 var questions = [
     {
         num: 1,
-        questionText:"1. Inside which HTML element do we put the JavaScript?",
-        correct: "script" , 
+        questionText: "1. Inside which HTML element do we put the JavaScript?",
+        correct: "script",
         answers: [
             "scripting",
-            "script" ,
+            "script",
             "javascript",
             "js"
         ]
     },
     {
         num: 2,
-        questionText:"2. Where is the correct place to insert a JavaScript?",
-        correct:"Both the <body> section and the <head> section are correct",
+        questionText: "2. Where is the correct place to insert a JavaScript?",
+        correct: "Both the <body> section and the <head> section are correct",
         answers: [
             "The &lt;body&gt section",
             "The &lt;header&gt section",
@@ -33,8 +34,8 @@ var questions = [
 
     {
         num: 3,
-        questionText:"3. What is the correct syntax for referring to an external script called 'xxx.js'?",
-        correct:"<script scr = 'xxx.js'>",
+        questionText: "3. What is the correct syntax for referring to an external script called 'xxx.js'?",
+        correct: "<script scr = 'xxx.js'>",
         answers: [
             "&lt;script name = 'xxx.js'&gt",
             "&lt;script href = 'xxx.js'&gt",
@@ -45,8 +46,8 @@ var questions = [
 
     {
         num: 4,
-        questionText:"4. How do you write 'Hello World' in an alert box?",
-        correct:"alert(“Hello World!”);",
+        questionText: "4. How do you write 'Hello World' in an alert box?",
+        correct: "alert(“Hello World!”);",
         answers: [
             "msg(“Hello World!”);",
             "alert(“Hello World!”);",
@@ -57,8 +58,8 @@ var questions = [
 
     {
         num: 5,
-        questionText:"5. How do you create a function in JavaScript?",
-        correct:"function myFunction(); ",
+        questionText: "5. How do you create a function in JavaScript?",
+        correct: "function myFunction(); ",
         answers: [
             "function myFunction(); ",
             "function = myFunction();",
@@ -69,8 +70,8 @@ var questions = [
 
     {
         num: 6,
-        questionText:"6. How do you call a function named 'myFunction'?",
-        correct:"myFunction();",
+        questionText: "6. How do you call a function named 'myFunction'?",
+        correct: "myFunction();",
         answers: [
             "call myFunction(); ",
             "call function myFunction();",
@@ -81,8 +82,8 @@ var questions = [
 
     {
         num: 7,
-        questionText:"7. How to write an IF statement in JavaScript?",
-        correct:"if (i == 5)",
+        questionText: "7. How to write an IF statement in JavaScript?",
+        correct: "if (i == 5)",
         answers: [
             "if (i == 5)",
             "if i == 5 then",
@@ -93,8 +94,8 @@ var questions = [
 
     {
         num: 8,
-        questionText:"8. How does a WHILE loop start?",
-        correct:"while (i <=10)",
+        questionText: "8. How does a WHILE loop start?",
+        correct: "while (i <=10)",
         answers: [
             "while i = 1 to 10",
             "while (i <=10)",
@@ -105,8 +106,8 @@ var questions = [
 
     {
         num: 9,
-        questionText:"9. How does a FOR loop start?",
-        correct:"for (i = 0; i <= 5; i++)",
+        questionText: "9. How does a FOR loop start?",
+        correct: "for (i = 0; i <= 5; i++)",
         answers: [
             "for i = 1 to 5",
             "for (i <=5; i++)",
@@ -117,8 +118,8 @@ var questions = [
 
     {
         num: 10,
-        questionText:"10. How can you add a comment in a JavaScript?",
-        correct:"// This is a comment ",
+        questionText: "10. How can you add a comment in a JavaScript?",
+        correct: "// This is a comment ",
         answers: [
             "&lt;!-- This is a comment -->",
             "// This is a comment ",
@@ -130,7 +131,7 @@ var questions = [
 ]
 
 
-var seconds = 100;
+var seconds = 5;
 var userTime;
 
 // if Start Button clicked
@@ -140,7 +141,7 @@ var StartQuiz = function (event) {
     startTime(seconds);
 }
 
-startBtn.addEventListener("click", StartQuiz); 
+startBtn.addEventListener("click", StartQuiz);
 
 
 
@@ -155,25 +156,26 @@ function showQstn(index) {
     var question = document.querySelector(".question");
     var questionTag = "<span>" + questions[index].questionText + "</span>";
     question.innerHTML = questionTag;
-        
-    var ansList = document.querySelector(".answers");
-    var ansListTag =  '<div class="options">' + questions[index].answers[0] + '<span></span></div>'
-                    + '<div class="options">' + questions[index].answers[1] + '<span></span></div>'
-                    + '<div class="options">' + questions[index].answers[2] + '<span></span></div>'
-                    + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
-    ansList.innerHTML = ansListTag;  
 
-    
+    var ansList = document.querySelector(".answers");
+    var ansListTag = '<div class="options">' + questions[index].answers[0] + '<span></span></div>'
+        + '<div class="options">' + questions[index].answers[1] + '<span></span></div>'
+        + '<div class="options">' + questions[index].answers[2] + '<span></span></div>'
+        + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
+    ansList.innerHTML = ansListTag;
+
+
 
     addListeners();
-    
+
 }
 
 
 function addListeners() {
     var optns = document.querySelectorAll(".options");
-    for (var i = 0; i < optns.length; i++ ){
-        optns[i].setAttribute("onclick", "optionSelected(this)")};
+    for (var i = 0; i < optns.length; i++) {
+        optns[i].setAttribute("onclick", "optionSelected(this)")
+    };
     optns.forEach(options => {
         options.addEventListener('click', function handleClick(event) {
             if (questionCount > 8) {
@@ -181,30 +183,34 @@ function addListeners() {
                 userTime = seconds;
                 clearInterval(counter);
                 console.log(userTime);
-                
+
             }
             else {
-            questionCount++;
-            showQstn(questionCount);
-            console.log(questionCount);
-            }    
-        });  
+                questionCount++;
+                showQstn(questionCount);
+                console.log(questionCount);
+            }
+        });
     });
 };
 
 
 // if user selects correct or incorrect answer
-function optionSelected(answr){
+function optionSelected(answr) {
     userAnswr = answr.textContent;
     var correctAnswr = questions[questionCount].correct;
-       
+
     if (userAnswr == correctAnswr) {
         console.log("answer is correct");
     }
     else {
         secondsCount.textContent = seconds;
-        seconds = seconds-10;
+        seconds = seconds - 10;
         console.log("answer is wrong");
+        if (seconds <= 0) {
+            showResults()
+            clearInterval(counter)
+        }
     }
 }
 
@@ -213,79 +219,99 @@ function optionSelected(answr){
 function startTime() {
     counter = setInterval(timer, 1000);
     function timer() {
-        if(seconds < 1){
+        if (seconds < 1) {
             showResults();
             clearInterval(counter);
         }
         else {
-        secondsCount.textContent = seconds;
-        seconds--;
+            secondsCount.textContent = seconds;
+            seconds--;
         }
     }
 };
-    
-    
 
-function showResults()  {
+
+
+function showResults() {
     quizPage.style.display = "none";
     results.classList.add("clicked");
     var finalScore = results.querySelector(".final-score");
-    
-    if (seconds < 0) {
-        var scoreTag = "<span>Your final score is <p>" + 0 + "</p></span>"; 
-        finalScore.innerHTML = scoreTag;
-    }
-    else {
-        var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
-        finalScore.innerHTML = scoreTag;
 
-    }
+    var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
+    finalScore.innerHTML = scoreTag;
+
+    // if (seconds < 0) {
+    //     var scoreTag = "<span>Your final score is <p>" + 0 + "</p></span>"; 
+    //     finalScore.innerHTML = scoreTag;
+    // }
+    // else {
+    //     var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
+    //     finalScore.innerHTML = scoreTag;
+
+    // }
 };
 
 
-
+console.log(localStorage.getItem('savedScores'))
 
 //once Sumbit Initials button clicked
-var submitResults = function(event) {
+function submitResults (event) {
     event.preventDefault();
+
+
+    storeResults();
+
+};
+
+var loadScores = function () {
+
     results.classList.remove("clicked");
     highScores.classList.add("clicked");
-    
-    var submitInitialsEl = document.createElement("li");
-    submitInitialsEl.className = "saved-initials";
-    var initialsInput = document.querySelector("input[name='initials']").value;
-    var userScore = userTime;
 
-    // if (initialsInput === "") {
-    //     alert("Please fill out the form");
-    //     }
+    var displayScores = localStorage.getItem("savedScores");
+    if (!displayScores) {
+
+        return false;
+    }
+    console.log("saved scores found");
+
+    var scoresOnScreen = JSON.parse(displayScores);
+    console.log(scoresOnScreen);
+    scoresOnScreen.forEach(score => {
+        var li = document.createElement("li");
+        li.className = "saved-initials";
+        li.textContent = score.name + "   " + score.type;
+        savedScores.append(li);
+    });
+};
+
+function storeResults() {
+
+    var initialsInput = document.querySelector("input[name='initials']").value;
+    if (!initialsInput || initialsInput.length <= 1) {
+        alert('need at least 2 initials')
+        return;
+    }
     var savedObject = {
         name: initialsInput,
-        type: userScore
+        type: seconds // i would rename this to 'score' instead of 'type'
     }
 
-    submitInitialsEl.innerHTML = "<span>" + savedObject.name + "   " + savedObject.type +  "</span>";
-    savedScores.appendChild(submitInitialsEl);
+    if (localStorage.getItem("savedScores")) {
+        var localScores = JSON.parse(localStorage.getItem("savedScores"));
 
-    localStorage.setItem("savedScores", JSON.stringify(savedObject));
+    }
+    else {
+        var localScores = [];
+    }
+    localScores.push(savedObject);
+    localStorage.setItem("savedScores", JSON.stringify(localScores));
+
     loadScores();
-    
-};
+}
 
-var loadScores = function() {
-    
-        var displayScores = localStorage.getItem("savedScores");
-        if (!savedScores) {
-            return false;
-        }
-        console.log("saved tasks found");
-    
-        displayScores = JSON.parse(displayScores);
-};
+resultsForm.addEventListener("submit", submitResults);
 
 
 
-
-
-submitBtn.addEventListener("click", submitResults);
 
