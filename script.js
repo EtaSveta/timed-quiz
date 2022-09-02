@@ -5,7 +5,9 @@ var results = document.querySelector(".results")
 var submitBtn = document.querySelector("#submit");
 var highScores = document.querySelector(".high-scores");
 var savedScores = document.querySelector(".saved-scores");
-var resultsForm = document.querySelector("#results-form")
+var resultsForm = document.querySelector("#results-form");
+var clearScoresBtn = document.querySelector("#clear-scores");
+var endStartBtn = document.querySelector("#end-start-btn");
 
 // creating a list of questions as an array
 var questions = [
@@ -130,7 +132,6 @@ var questions = [
 
 ]
 
-
 var seconds = 5;
 var userTime;
 
@@ -143,8 +144,7 @@ var StartQuiz = function (event) {
 
 startBtn.addEventListener("click", StartQuiz);
 
-
-
+endStartBtn.addEventListener("click", StartQuiz);
 
 var questionCount = 0;
 console.log(questionCount);
@@ -164,10 +164,7 @@ function showQstn(index) {
         + '<div class="options">' + questions[index].answers[3] + '<span></span></div>';
     ansList.innerHTML = ansListTag;
 
-
-
     addListeners();
-
 }
 
 
@@ -215,7 +212,6 @@ function optionSelected(answr) {
 }
 
 
-
 function startTime() {
     counter = setInterval(timer, 1000);
     function timer() {
@@ -231,7 +227,6 @@ function startTime() {
 };
 
 
-
 function showResults() {
     quizPage.style.display = "none";
     results.classList.add("clicked");
@@ -240,15 +235,6 @@ function showResults() {
     var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
     finalScore.innerHTML = scoreTag;
 
-    // if (seconds < 0) {
-    //     var scoreTag = "<span>Your final score is <p>" + 0 + "</p></span>"; 
-    //     finalScore.innerHTML = scoreTag;
-    // }
-    // else {
-    //     var scoreTag = "<span>Your final score is <p>" + seconds + "</p></span>";
-    //     finalScore.innerHTML = scoreTag;
-
-    // }
 };
 
 
@@ -257,10 +243,7 @@ console.log(localStorage.getItem('savedScores'))
 //once Sumbit Initials button clicked
 function submitResults (event) {
     event.preventDefault();
-
-
     storeResults();
-
 };
 
 var loadScores = function () {
@@ -294,7 +277,7 @@ function storeResults() {
     }
     var savedObject = {
         name: initialsInput,
-        type: seconds // i would rename this to 'score' instead of 'type'
+        type: seconds 
     }
 
     if (localStorage.getItem("savedScores")) {
@@ -309,6 +292,17 @@ function storeResults() {
 
     loadScores();
 }
+
+function clearScores() {
+    localStorage.clear();
+    
+    highScores.classList.add("clicked");
+    
+    
+    
+}
+
+clearScoresBtn.addEventListener("click", clearScores);
 
 resultsForm.addEventListener("submit", submitResults);
 
