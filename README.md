@@ -11,6 +11,10 @@ until user decided to clear it with the button.
 * CSS
 * Java Script
 
+## Screenshot
+![image](https://user-images.githubusercontent.com/109307665/188274217-55fd9884-573a-4b37-a521-11499e44b0aa.png)
+
+
 ## Website 
 https://etasveta.github.io/timed-quiz/
 
