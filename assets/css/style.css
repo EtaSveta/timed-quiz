@@ -32,6 +32,7 @@ body {
     top: 35%;
     left: 30%;
     width: 500px;
+    min-height: 300px;
 }
 
 .quiz-page.clicked,
@@ -90,6 +91,11 @@ body {
     
 }
 
+.saved-scores {
+    padding-bottom: 50px;
+    
+}
+
 .quiz-page section .options,
 .saved-initials {
     cursor: pointer;
@@ -104,6 +110,7 @@ body {
 
 .saved-initials {
     list-style: none;
+    cursor: auto;
 }
 
 .quiz-page section .options:hover {
@@ -148,7 +155,8 @@ body {
     padding: 0 10px;    
 }
 
-.results button {
+.results button, .start-over-btn,
+.clear-scores {
     border-radius: 5px;
     padding: 2px 5px;
     border: 1px solid black;
@@ -158,8 +166,9 @@ body {
     margin-top: 15px;
 }
 
-.results button:hover {
-    background-color: rgb(215, 229, 178);
+.results button:hover, .start-over-btn:hover,
+.clear-scores:hover, .start-btn button:hover {
+    background-color: rgb(194, 211, 148);
 }
 
 
@@ -168,6 +177,22 @@ body {
     font-weight: bold;
     padding: 30px;
 }
+
+.highscore-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    
+    
+}
+
+/* .start-over-btn,
+.clear-scores {
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 3px;
+    border: 1px solid black;
+} */
 
 
 @media screen and (max-width: 980px) {

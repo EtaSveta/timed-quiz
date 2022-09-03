@@ -7,7 +7,7 @@ var highScores = document.querySelector(".high-scores");
 var savedScores = document.querySelector(".saved-scores");
 var resultsForm = document.querySelector("#results-form");
 var clearScoresBtn = document.querySelector("#clear-scores");
-var endStartBtn = document.querySelector("#end-start-btn");
+var startOverBtn = document.querySelector("#start-over-btn");
 
 // creating a list of questions as an array
 var questions = [
@@ -144,7 +144,6 @@ var StartQuiz = function (event) {
 
 startBtn.addEventListener("click", StartQuiz);
 
-endStartBtn.addEventListener("click", StartQuiz);
 
 var questionCount = 0;
 console.log(questionCount);
@@ -175,7 +174,7 @@ function addListeners() {
     };
     optns.forEach(options => {
         options.addEventListener('click', function handleClick(event) {
-            if (questionCount > 8) {
+            if (questionCount > 6) {
                 showResults();
                 userTime = seconds;
                 clearInterval(counter);
@@ -293,16 +292,26 @@ function storeResults() {
     loadScores();
 }
 
+// function to clear scores and show 
 function clearScores() {
     localStorage.clear();
     
-    highScores.classList.add("clicked");
-    
-    
+    var savedEl = document.querySelector(".saved-scores")
+    while(savedEl.firstChild) {
+        savedEl.removeChild(savedEl.firstChild);
+    }
     
 }
 
+// function startOver() {
+//     highScores.classList.remove("clicked"); 
+//     results.classList.remove("clicked");
+    
+// }
+
 clearScoresBtn.addEventListener("click", clearScores);
+
+// startOverBtn.addEventListener("click", startOver);
 
 resultsForm.addEventListener("submit", submitResults);
 
