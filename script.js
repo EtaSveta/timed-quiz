@@ -106,31 +106,6 @@ var questions = [
             "while i less than 10"
         ]
     },
-
-    {
-        num: 9,
-        questionText: "9. How does a FOR loop start?",
-        correct: "for (i = 0; i <= 5; i++)",
-        answers: [
-            "for i = 1 to 5",
-            "for (i <=5; i++)",
-            "for (i = 0; i <= 5; i++)",
-            "for (i = 0; i <=5)"
-        ]
-    },
-
-    {
-        num: 10,
-        questionText: "10. How can you add a comment in a JavaScript?",
-        correct: "// This is a comment ",
-        answers: [
-            "&lt;!-- This is a comment -->",
-            "// This is a comment ",
-            "“This is a comment",
-            "‘This is a comment’"
-        ]
-    },
-
 ]
 
 var seconds = 60;
@@ -144,12 +119,11 @@ var StartQuiz = function (event) {
     startTime(seconds);
 }
 
+// start button even listener
 startBtn.addEventListener("click", StartQuiz);
 
 
 var questionCount = 0;
-console.log(questionCount);
-
 var counter;
 
 // function showing questions 
@@ -168,7 +142,7 @@ function showQstn(index) {
     addListeners();
 }
 
-
+//going through array of questions
 function addListeners() {
     var optns = document.querySelectorAll(".options");
     for (var i = 0; i < optns.length; i++) {
@@ -181,7 +155,6 @@ function addListeners() {
                 userTime = seconds;
                 clearInterval(counter);
                 console.log(userTime);
-
             }
             else {
                 questionCount++;
@@ -191,7 +164,6 @@ function addListeners() {
         });
     });
 };
-
 
 // if user selects correct or incorrect answer
 function optionSelected(answr) {
@@ -210,9 +182,9 @@ function optionSelected(answr) {
             clearInterval(counter)
         }
     }
-}
+};
 
-
+//start and stop timer
 function startTime() {
     counter = setInterval(timer, 1000);
     function timer() {
@@ -227,7 +199,7 @@ function startTime() {
     }
 };
 
-
+// showing user their quiz result
 function showResults() {
     quizPage.style.display = "none";
     results.classList.add("clicked");
@@ -241,22 +213,18 @@ function showResults() {
 
 console.log(localStorage.getItem('savedScores'))
 
-//once Sumbit Initials button clicked
+//once Sumbit Initials button clicked it is stored in local storage
 function submitResults (event) {
     event.preventDefault();
     storeResults();
 };
 
+// once user clickes "Submit Results" a list of all saved scores displays on screen
 var loadScores = function () {
-
     results.classList.remove("clicked");
     highScores.classList.add("clicked");
 
     var displayScores = localStorage.getItem("savedScores");
-    if (!displayScores) {
-
-        return false;
-    }
     console.log("saved scores found");
 
     var scoresOnScreen = JSON.parse(displayScores);
@@ -269,8 +237,8 @@ var loadScores = function () {
     });
 };
 
+//function to save results to local storage
 function storeResults() {
-
     var initialsInput = document.querySelector("input[name='initials']").value;
     if (!initialsInput || initialsInput.length <= 1) {
         alert('need at least 2 initials')
@@ -283,7 +251,6 @@ function storeResults() {
 
     if (localStorage.getItem("savedScores")) {
         var localScores = JSON.parse(localStorage.getItem("savedScores"));
-
     }
     else {
         var localScores = [];
@@ -294,7 +261,7 @@ function storeResults() {
     loadScores();
 }
 
-// function to clear scores and show 
+// function to clear all saved scores
 function clearScores() {
     localStorage.clear();
     
@@ -305,15 +272,7 @@ function clearScores() {
     
 }
 
-// function startOver() {
-//     highScores.classList.remove("clicked"); 
-//     results.classList.remove("clicked");
-    
-// }
-
 clearScoresBtn.addEventListener("click", clearScores);
-
-// startOverBtn.addEventListener("click", startOver);
 
 resultsForm.addEventListener("submit", submitResults);
 

@@ -10,16 +10,19 @@ body {
     background: rgb(215, 229, 178);
 }
 
+/* start button position on page */
 .start-btn {
     position: absolute;
     top: 40%;
     left: 45%;
 }
 
+/* remove start button once quiz starts */
 .start-btn.clicked {
     opacity: 0;
 }
 
+/* styling quistions and history of user scores */
 .quiz-page,
 .high-scores {
     opacity: 0;
@@ -32,6 +35,7 @@ body {
     pointer-events: none;
 }
 
+/* position on page */
 .high-scores {
     top: 35%;
     left: 30%;
@@ -39,6 +43,7 @@ body {
     min-height: 300px;
 }
 
+/* bring the appropriate section in sight once clicked on */
 .quiz-page.clicked,
 .results.clicked,
 .high-scores.clicked {
@@ -47,6 +52,7 @@ body {
     pointer-events: auto;
 }
 
+/* button styling */
 .start-btn button {
     font-size: larger;
     padding: 20px 20px;
@@ -159,6 +165,7 @@ body {
     padding: 0 10px;    
 }
 
+/* buttons style */
 .results button, .start-over-btn,
 .clear-scores {
     border-radius: 5px;
@@ -170,6 +177,7 @@ body {
     margin-top: 15px;
 }
 
+/* change color on hover */
 .results button:hover, .start-over-btn:hover,
 .clear-scores:hover, .start-btn button:hover {
     background-color: rgb(194, 211, 148);
@@ -192,7 +200,7 @@ body {
 
 
 
-
+/* responsive with mobile */
 @media screen and (max-width: 980px) {
     .start-btn {
         left: 42%;
