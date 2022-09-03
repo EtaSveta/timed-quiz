@@ -1,4 +1,5 @@
 var startBtn = document.querySelector(".start-btn button");
+var startBtnContainer = document.querySelector(".start-btn");
 var quizPage = document.querySelector(".quiz-page");
 var secondsCount = document.querySelector(".time-sec");
 var results = document.querySelector(".results")
@@ -138,6 +139,7 @@ var userTime;
 // if Start Button clicked
 var StartQuiz = function (event) {
     quizPage.classList.add("clicked");
+    startBtnContainer.classList.add("clicked");
     showQstn(0);
     startTime(seconds);
 }

@@ -16,6 +16,10 @@ body {
     left: 45%;
 }
 
+.start-btn.clicked {
+    opacity: 0;
+}
+
 .quiz-page,
 .high-scores {
     opacity: 0;
@@ -186,24 +190,40 @@ body {
     
 }
 
-/* .start-over-btn,
-.clear-scores {
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 3px;
-    border: 1px solid black;
-} */
+
 
 
 @media screen and (max-width: 980px) {
+    .start-btn {
+        left: 42%;
+    }
+
     .quiz-page {
         left: 10%
         
     }
 
-    .results,
+        
+    .results, .high-scores {
+        left: 17%;
+    }
+} 
+
+@media screen and (max-width: 575px) {
     .high-scores {
-        left: 15%;
-        top: 30%
-    }    
-}    
+        margin-left: -54px;
+        width: 400px;
+    } 
+    
+    .results {
+        width: 400px;
+        margin-left: -62px;
+    }
+    
+    .quiz-page {
+        margin-left: -60px;
+        width: 465px;
+    } 
+}
+
+ 
