@@ -132,7 +132,7 @@ var questions = [
 
 ]
 
-var seconds = 5;
+var seconds = 60;
 var userTime;
 
 // if Start Button clicked
